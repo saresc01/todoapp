@@ -39,14 +39,18 @@ const renderTodos = (): void => {    // void because no return - what we are doi
     const li = document.createElement('li'); //createElement is the method 
     li.className = 'todo-item'; //attach a class to the list item
     li.innerHTML = `   
-      <span>${todo.title}</span>
-      <button id="removeBtn"> Remove </button>  
+      <span style="text-decoration: ${todo.completed ? 'line-through' : 'none'}">
+        ${todo.title}
+      </span>
+      <button id="completedBtn">${todo.completed ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
+      <button id="removeBtn"> Remove </button>        
       <button id="editBtn"> Edit </button>      
     `;
 
     // addRemoveButtonListener is further down in the code. We have onclick in the function instead of template literals. More safe to use addEventListener.
     addRemoveButtonListener(li, todo.id); // listener for remove. li is the parent element, and todo.id is the ID of the todo.   
-    addEditButtonListener(li, todo.id);   //listener for edit    
+    addEditButtonListener(li, todo.id);   //listener for edit  
+    addCompletedListener(li, todo.id); 
     todoList.appendChild(li);   // Append the list item to the ul element    
   });
 };
@@ -138,6 +142,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // Option 1: Add a button to toggle the completed status of a todo item 
 // Function to toggle the completed status of a todo + 
 // Add a button to toggle the completed status of a todo item
+
+const addCompletedListener = (li: HTMLLIElement, id: number): void =>{
+  const completedBtn = li.querySelector('#completedBtn');
+  completedBtn?.addEventListener('click', () => completedTodo(id))
+}
+
+const completedTodo = (id: number): void => {
+  const todo = todos.find(todo => todo.id === id)
+  if(todo){
+    if (todo.completed == true){
+      todo.completed = false
+    } else {
+      todo.completed = true
+    }
+  } 
+  renderTodos(); 
+}
+
 
 
 // Option 2: Add a button to clear all completed todos
