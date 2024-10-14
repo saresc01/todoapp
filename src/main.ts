@@ -181,37 +181,36 @@ const completedTodo = (id: number): void => {
 // Add a button to filter todos by status
 // Function to filter todos by status
 
-//creo un listener para asignar al boton
+//select all button (listener + render)
 filterAllBtn.addEventListener('click', () => showAll());
 
 const showAll = (): void => {
   renderTodos();
 }
 
+//filter completed (listener + function)
 filterComplBtn.addEventListener('click', () => showComplete() );
-
 
 const showComplete = (): void => {
  let completedTodos = todos.filter(todo => todo.completed == true);
-
  renderTodosParam(completedTodos);
 }
 
+//filter incomplete (listener + function)
 filterIncomplBtn.addEventListener('click', () => showInComplete() );
 
 const showInComplete = (): void => {
-  let incompletedTodos = todos.filter(todo => todo.completed == false);
- 
+  let incompletedTodos = todos.filter(todo => todo.completed == false); 
   renderTodosParam(incompletedTodos);
  }
 
-const renderTodosParam = (todosParam: Todo[]): void => {    // void because no return - what we are doing is updating the DOM
-  todoList.innerHTML = '';    //clear the current list
-   
-  // Iterate over the todos array and create list items for each todo
-  todosParam.forEach(todo => {  // In this specific case, .forEach is more suitable because we are directly modifying the DOM for each todo item.
-    const li = document.createElement('li'); //createElement is the method 
-    li.className = 'todo-item'; //attach a class to the list item
+ //renderTodosParam is for render the filter buttons
+const renderTodosParam = (todosParam: Todo[]): void => {   
+  todoList.innerHTML = '';     
+ 
+  todosParam.forEach(todo => {  
+    const li = document.createElement('li'); 
+    li.className = 'todo-item'; 
     li.innerHTML = `   
       <span style="text-decoration: ${todo.completed ? 'line-through' : 'none'}">
         ${todo.title}
@@ -220,12 +219,11 @@ const renderTodosParam = (todosParam: Todo[]): void => {    // void because no r
       <button id="removeBtn"> Remove </button>        
       <button id="editBtn"> Edit </button>            
     `;
-
-    // addRemoveButtonListener is further down in the code. We have onclick in the function instead of template literals. More safe to use addEventListener.
-    addRemoveButtonListener(li, todo.id); // listener for remove. li is the parent element, and todo.id is the ID of the todo.   
-    addEditButtonListener(li, todo.id);   //listener for edit  
+        
+    addRemoveButtonListener(li, todo.id);   
+    addEditButtonListener(li, todo.id);  
     addCompletedListener(li, todo.id); 
-    todoList.appendChild(li);   // Append the list item to the ul element      
+    todoList.appendChild(li);        
   });
 };
 
