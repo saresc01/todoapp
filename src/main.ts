@@ -14,6 +14,9 @@ let todos: Todo[] = [];  //follow the interface with the objects
 const todoInput = document.getElementById('todo-input') as HTMLInputElement;  // exist in HTML file
 const todoList = document.getElementById('todo-list') as HTMLUListElement;
 const todoForm = document.querySelector('.todo-form') as HTMLFormElement;
+const filterAllBtn = document.getElementById('filter-all') as HTMLButtonElement; //step4
+const filterComplBtn = document.getElementById('filter-completed') as HTMLButtonElement;
+const filterIncomplBtn = document.getElementById('filter-incomplete') as HTMLButtonElement;
 
 //step 4: Function to add a new todo ; void: not return
 // Function to add a new todo: This function creates a new todo object and adds it to the array.
@@ -50,7 +53,7 @@ const renderTodos = (): void => {    // void because no return - what we are doi
     addRemoveButtonListener(li, todo.id); // listener for remove. li is the parent element, and todo.id is the ID of the todo.   
     addEditButtonListener(li, todo.id);   //listener for edit  
     addCompletedListener(li, todo.id); 
-    todoList.appendChild(li);   // Append the list item to the ul element    
+    todoList.appendChild(li);   // Append the list item to the ul element      
   });
 };
 
@@ -89,7 +92,7 @@ const removeTodo = (id: number): void => {  //original sin
 
 // We have to access the li of the todos elements with their id. 
 // When accesing the id can we add a function with a button ("Edit the todo")
-// We can add a function that when the button is clciked it access the id and it changes the value of the text of the element
+// We can add a function that when the button is clicked it access the id and it changes the value of the text of the element
 //edit function and button
 // Edit event listener - make button and add button to each todo
 const addEditButtonListener = (li: HTMLLIElement, id:number) => {
@@ -178,8 +181,53 @@ const completedTodo = (id: number): void => {
 // Add a button to filter todos by status
 // Function to filter todos by status
 
-//status
-let statusTodo: 'all' | 'completed' | 'incomplete' = 'all';
+//creo un listener para asignar al boton
+filterAllBtn.addEventListener('click', () => showAll());
+
+const showAll = (): void => {
+  renderTodos();
+}
+
+filterComplBtn.addEventListener('click', () => showComplete() );
+
+
+const showComplete = (): void => {
+ let completedTodos = todos.filter(todo => todo.completed == true);
+
+ renderTodosParam(completedTodos);
+}
+
+filterIncomplBtn.addEventListener('click', () => showInComplete() );
+
+const showInComplete = (): void => {
+  let incompletedTodos = todos.filter(todo => todo.completed == false);
+ 
+  renderTodosParam(incompletedTodos);
+ }
+
+const renderTodosParam = (todosParam: Todo[]): void => {    // void because no return - what we are doing is updating the DOM
+  todoList.innerHTML = '';    //clear the current list
+   
+  // Iterate over the todos array and create list items for each todo
+  todosParam.forEach(todo => {  // In this specific case, .forEach is more suitable because we are directly modifying the DOM for each todo item.
+    const li = document.createElement('li'); //createElement is the method 
+    li.className = 'todo-item'; //attach a class to the list item
+    li.innerHTML = `   
+      <span style="text-decoration: ${todo.completed ? 'line-through' : 'none'}">
+        ${todo.title}
+      </span>
+      <button id="completedBtn">${todo.completed ? 'Incomplete' : 'Complete'}</button>
+      <button id="removeBtn"> Remove </button>        
+      <button id="editBtn"> Edit </button>            
+    `;
+
+    // addRemoveButtonListener is further down in the code. We have onclick in the function instead of template literals. More safe to use addEventListener.
+    addRemoveButtonListener(li, todo.id); // listener for remove. li is the parent element, and todo.id is the ID of the todo.   
+    addEditButtonListener(li, todo.id);   //listener for edit  
+    addCompletedListener(li, todo.id); 
+    todoList.appendChild(li);   // Append the list item to the ul element      
+  });
+};
 
 
 
