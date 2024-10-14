@@ -6,13 +6,15 @@
   --color-scheme: light dark;
   --color: rgba(255, 255, 255, 0.87);
   --background-color: #242424;
+  --btnblue: #94b0ec;
+  --hoverblue: #4552ea;
 
   --font-synthesis: none;
   --text-rendering: optimizeLegibility;
   --webkit-font-smoothing: antialiased;
   --moz-osx-font-smoothing: grayscale;
 
-  --body-background-color: #f4f4f4;
+  --body-background-color: #6dc1c7;
   --container-background-color: #fff;
   --container-padding: 20px;
   --container-border-radius: 5px;
@@ -42,10 +44,12 @@ body {
 
 h1 {
   text-align: center;
+  color: var(--hoverblue);
 }
 .todo-form {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 10px;
 }
 .todo-form input {
   flex: 1;
@@ -56,7 +60,7 @@ h1 {
 .todo-form button {
   padding: 10px;
   border: none;
-  background: #28a745;
+  background: var(--hoverblue);  /*button add*/
   color: #fff;
   border-radius: 3px;
   cursor: pointer;
@@ -75,12 +79,30 @@ h1 {
 }
 .todo-item button {
   border: none;
-  background: #dc3545;
+  background: var(--btnblue);  /*button in the row*/
   color: #fff;
   border-radius: 3px;
   cursor: pointer;
+  padding: 3px;
 }
 
+.todo-item button:hover {
+  background:var(--hoverblue);
+}
+
+.filterbtn {
+  padding: 5px;
+  border: none;
+  background: var(--btnblue);   /*filter button*/
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.filterbtn:hover {
+  background:var(--hoverblue);
+}
 
 .input-error {
   border: 2px solid red;

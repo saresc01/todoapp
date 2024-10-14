@@ -32,7 +32,6 @@ const addTodo = (text:string): void => {
 // Function to render the list of todos: This function updates the DOM to display the current list of todos.
 const renderTodos = (): void => {    // void because no return - what we are doing is updating the DOM
   todoList.innerHTML = '';    //clear the current list
-
    
   // Iterate over the todos array and create list items for each todo
   todos.forEach(todo => {  // In this specific case, .forEach is more suitable because we are directly modifying the DOM for each todo item.
@@ -42,9 +41,9 @@ const renderTodos = (): void => {    // void because no return - what we are doi
       <span style="text-decoration: ${todo.completed ? 'line-through' : 'none'}">
         ${todo.title}
       </span>
-      <button id="completedBtn">${todo.completed ? 'Mark as Incomplete' : 'Mark as Complete'}</button>
+      <button id="completedBtn">${todo.completed ? 'Incomplete' : 'Complete'}</button>
       <button id="removeBtn"> Remove </button>        
-      <button id="editBtn"> Edit </button>      
+      <button id="editBtn"> Edit </button>            
     `;
 
     // addRemoveButtonListener is further down in the code. We have onclick in the function instead of template literals. More safe to use addEventListener.
@@ -161,7 +160,6 @@ const completedTodo = (id: number): void => {
 }
 
 
-
 // Option 2: Add a button to clear all completed todos
 // Add a button to clear all completed todos
 // Function to clear all completed todos
@@ -179,6 +177,10 @@ const completedTodo = (id: number): void => {
 // Option 4: Add a button to filter todos by status
 // Add a button to filter todos by status
 // Function to filter todos by status
+
+//status
+let statusTodo: 'all' | 'completed' | 'incomplete' = 'all';
+
 
 
 // Option 5: Add a button to sort todos by status
