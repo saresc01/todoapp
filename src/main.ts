@@ -1,7 +1,7 @@
 import './style.css'
 
 // Step 1: Define the Todo interface
-interface Todo {    //We can add more like author
+interface Todo {    
   id: number;
   title: string;
   completed: boolean;   
@@ -24,7 +24,7 @@ const addTodo = (text:string): void => {
   const newTodo: Todo = {
     id: Date.now(),
     title: text,
-    completed: false,     
+    completed: false,   
   };
   todos.push(newTodo); //push only for arrays
   console.log("Todo added: ",todos); // Log the updated list of todos to the console, tested if is work 
@@ -81,14 +81,12 @@ const addRemoveButtonListener = (li:HTMLLIElement, id: number): void => { //orig
   removeButton?.addEventListener('click', () => removeTodo(id));  //with the ? , when we start is empty meaning could be there or not
 };
 
-
 // Step 8: Function to remove a todo by ID
 // Function to remove a todo by ID: This function removes a todo from the array based on its ID.
 const removeTodo = (id: number): void => {  //original sin
   todos = todos.filter(todo => todo.id !== id); //filter go for all the array, we should use find insted of filter, because filter will return a ...? ( con find cuando encuentre lo que busca para , y con filter sigue buscando por todo el array )
   renderTodos(); //without this, it is remove from the console but not from the screen // Re-render the updated list of todos
 };
-
 
 // We have to access the li of the todos elements with their id. 
 // When accesing the id can we add a function with a button ("Edit the todo")
@@ -111,7 +109,6 @@ const editTodo = (id:number) => {
     }
   }   //if exist todo then run...
 }
-
 
 //Color picker works changing the background color
 // Function to initialize the color picker event listener
@@ -139,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//------------------------------------------------------------------------------------------------Optional features list: 
+//------------------------------------------------------------------------------------------------Optional features: 
 
 // Option 1: Add a button to toggle the completed status of a todo item 
 // Function to toggle the completed status of a todo + 
@@ -161,21 +158,6 @@ const completedTodo = (id: number): void => {
   } 
   renderTodos(); 
 }
-
-
-// Option 2: Add a button to clear all completed todos
-// Add a button to clear all completed todos
-// Function to clear all completed todos
-// Add a button to toggle all todos
-
-
-// Option 3: Add a button to toggle all todos
-// Edit a todo item and update it
-// Add an input field to edit a todo item
-// Save the updated todo item
-// Cancel the editing of a todo item
-// Add a button to cancel the editing of a todo item
-
 
 // Option 4: Add a button to filter todos by status
 // Add a button to filter todos by status
@@ -227,57 +209,7 @@ const renderTodosParam = (todosParam: Todo[]): void => {
   });
 };
 
-
-
-// Option 5: Add a button to sort todos by status
-// Add a button to sort todos by status
-// Function to sort todos by status
-
-// Option 6: Due Date for Todos:
-// Add a date input field to set a due date for each todo item.
-// Display the due date next to each todo item.
-// Highlight overdue todos.
-// Priority Levels:
-
-// Option 7: Add a dropdown to set the priority level (e.g., Low, Medium, High) for each todo item.
-// Display the priority level next to each todo item.
-// Sort todos by priority.
-// Search Functionality:
-
-// Option 8: Add a search input field to filter todos based on the search query.
-// Display only the todos that match the search query.
-// Category Tags:
-
-// Option 9: Add a text input field to assign category tags to each todo item.
-// Display the tags next to each todo item.
-// Filter todos by category tags.
-// Progress Indicator:
-
-// Option 10: Add a progress bar to show the percentage of completed todos.
-// Update the progress bar as todos are marked as completed or incomplete.
-// Dark Mode Toggle:
-
 // Option 11: Add a button to toggle between light and dark modes.
 // Change the app's theme based on the selected mode.
 // Export/Import Todos:
-
-// Option 12: Add buttons to export the list of todos to a JSON file.
-// Add functionality to import todos from a JSON file.
-// Notifications:
-
-// Option 13: Add notifications to remind users of due todos.
-// Use the Notification API to show browser notifications.
-
-// Option 14: Local Storage:
-// Save the list of todos to local storage.
-// Retrieve the todos from local storage on page load.
-// Add a button to clear all todos from local storage.
-
-// Option 15: JSDOC Comments:
-// Add JSDoc comments to document the functions and interfaces in the code.
-// Link : https://jsdoc.app/
-
-// Optional 16: Handle Errors:
-// Add error handling for user input validation. Show red text or border for invalid input.
-// Display error messages for invalid input.
 
