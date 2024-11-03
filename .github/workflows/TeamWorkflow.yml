@@ -42,22 +42,25 @@ jobs:
       - name: Run tests
         run: testcafe chromium:headless test/*
 
+      - name: Create Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Dist
+          path: dist/
+
+
   deployment:
     needs: integration-delivery
     runs-on: ubuntu-latest
     environment: Live
-    container:
-      image: node
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+    steps: 
+      - name: Take Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: Dist
+          path: dist/
 
-      - name: Build website
-        run: npm run build
-        
       - name: FTP deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
