@@ -83,9 +83,9 @@ const addRemoveButtonListener = (li:HTMLLIElement, id: number): void => { //orig
 
 // Step 8: Function to remove a todo by ID
 // Function to remove a todo by ID: This function removes a todo from the array based on its ID.
-const removeTodo = (id: number): void => {  //original sin
-  todos = todos.filter(todo => todo.id !== id); //filter go for all the array, we should use find insted of filter, because filter will return a ...? ( con find cuando encuentre lo que busca para , y con filter sigue buscando por todo el array )
-  renderTodos(); //without this, it is remove from the console but not from the screen // Re-render the updated list of todos
+const removeTodo = (id: number): void => {  
+  todos = todos.filter(todo => todo.id !== id); 
+  renderTodos();  // Re-render the updated list of todos
 };
 
 // We have to access the li of the todos elements with their id. 
@@ -209,7 +209,39 @@ const renderTodosParam = (todosParam: Todo[]): void => {
   });
 };
 
-// Option 11: Add a button to toggle between light and dark modes.
-// Change the app's theme based on the selected mode.
-// Export/Import Todos:
+// Part 2, Feature 1 : Add a button to toggle between light and dark modes.   
 
+const darkModeButton = document.getElementById("dark-mode") as HTMLButtonElement;
+
+const toggleDarkMode = (): void => {
+  document.body.classList.toggle("dark-mode");
+  darkModeButton.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+};
+
+darkModeButton.addEventListener('click', toggleDarkMode);
+
+
+// Part 2, Feature 2 : Add a button sort the task, first incomplete task, and later the complete.
+const sortButton = document.getElementById("sort-todo") as HTMLButtonElement; 
+
+const sortTodos = (): void => {
+
+  const completedTodos: Todo[] = []
+  const incompletedTodos: Todo[] = []
+
+  todos.forEach(todo => {
+    if (todo.completed == true){
+      completedTodos.push(todo)
+    } else{
+      incompletedTodos.push(todo)
+    }
+  })
+
+  var sortedTodos: Todo[] = []
+  sortedTodos = sortedTodos.concat(incompletedTodos)
+  sortedTodos = sortedTodos.concat(completedTodos)
+
+  renderTodosParam(sortedTodos)
+};
+
+sortButton.addEventListener('click', sortTodos);
