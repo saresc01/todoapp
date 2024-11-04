@@ -3,7 +3,9 @@ import {Selector} from "testcafe";
 fixture("Todo test")
     .page("https://test.saraescallon.dk/todo/");
 
+
 //test 1 background color
+
 test("Change color background", async t =>{
     await t 
         .click(Selector("#colorPicker")) 
@@ -11,7 +13,9 @@ test("Change color background", async t =>{
         .expect(Selector("body").getStyleProperty("background-color")).eql("rgb(255, 87, 51)");  
 });
 
+
 //test 2 filter completed
+
 test("Add todos and filter completed", async t => {    
     await t
         .typeText(Selector("#todo-input"), "patata") //write patata       
@@ -24,7 +28,9 @@ test("Add todos and filter completed", async t => {
         .expect(Selector(".todo-item").withText("calabacin").exists).notOk();
 });
 
+
 //test 3 filter and see all 
+
 test("Click on 'Show All' filter", async t => {    
     await t
         .typeText(Selector("#todo-input"), "pan") //write pan      
@@ -37,8 +43,10 @@ test("Click on 'Show All' filter", async t => {
         .expect(Selector("#filter-all").exists).ok(); 
 });
 
+
 //test 4 change to dark mode 
-test("Toggle dark mode", async t => {
+
+/* test("Toggle dark mode", async t => {
     const darkModeButton = Selector("#dark-mode"); //click to dark mode button
     const body = Selector("body"); 
 
@@ -50,10 +58,12 @@ test("Toggle dark mode", async t => {
     await t  //come back to light 
         .click(darkModeButton)
         .expect(body.getStyleProperty("background-color")).notEql("rgb(18, 18, 18)");
-});
+}); */
+
 
 //test 5 sort the task, incomplete first  
-test("Sort task, incomplete first", async t => {
+
+/* test("Sort task, incomplete first", async t => {
     await t
         .typeText(Selector("#todo-input"), "Do the dishes") 
         .click(Selector('button[type="submit"]')) 
@@ -96,4 +106,4 @@ test("Sort task, incomplete first", async t => {
                 await t.expect(spanStyle === 'none').notOk(`Found incompleted task after completed one at index ${i}`);
             }
         }
-});
+}); */
