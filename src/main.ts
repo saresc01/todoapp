@@ -226,7 +226,7 @@ darkModeButton.addEventListener('click', toggleDarkMode);
 
 // Part 2, Feature 2 : Add a button sort the task, first incomplete task, and later the complete.
 
-/* const sortButton = document.getElementById("sort-todo") as HTMLButtonElement; 
+const sortButton = document.getElementById("sort-todo") as HTMLButtonElement; 
 
 const sortTodos = (): void => {
 
@@ -248,4 +248,4 @@ const sortTodos = (): void => {
   renderTodosParam(sortedTodos)
 };
 
-sortButton.addEventListener('click', sortTodos); */
+sortButton.addEventListener('click', sortTodos); 

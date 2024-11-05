@@ -63,7 +63,7 @@ test("Click on 'Show All' filter", async t => {
 
 //test 5 sort the task, incomplete first  
 
-/* test("Sort task, incomplete first", async t => {
+ test("Sort task, incomplete first", async t => {
     await t
         .typeText(Selector("#todo-input"), "Do the dishes") 
         .click(Selector('button[type="submit"]')) 
@@ -106,4 +106,4 @@ test("Click on 'Show All' filter", async t => {
                 await t.expect(spanStyle === 'none').notOk(`Found incompleted task after completed one at index ${i}`);
             }
         }
-}); */
+}); 
