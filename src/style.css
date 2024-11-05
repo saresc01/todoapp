@@ -23,13 +23,13 @@
 }
 
 /* DARK MODE */
-/* .dark-mode {
+ .dark-mode {
   --color-scheme: dark;
   --color: rgba(255, 255, 255, 0.87);
   --background-color: #242424;
   --body-background-color: #121212;
   --container-background-color: #333;
-} */
+} 
 
 body {
   font-family: var(--font-family);

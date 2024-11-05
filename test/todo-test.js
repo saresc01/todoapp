@@ -46,7 +46,7 @@ test("Click on 'Show All' filter", async t => {
 
 //test 4 change to dark mode 
 
-/* test("Toggle dark mode", async t => {
+ test("Toggle dark mode", async t => {
     const darkModeButton = Selector("#dark-mode"); //click to dark mode button
     const body = Selector("body"); 
 
@@ -58,7 +58,7 @@ test("Click on 'Show All' filter", async t => {
     await t  //come back to light 
         .click(darkModeButton)
         .expect(body.getStyleProperty("background-color")).notEql("rgb(18, 18, 18)");
-}); */
+}); 
 
 
 //test 5 sort the task, incomplete first  

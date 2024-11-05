@@ -213,7 +213,7 @@ const renderTodosParam = (todosParam: Todo[]): void => {
 
 // Part 2, Feature 1 : Add a button to toggle between light and dark modes.   
 
-/* const darkModeButton = document.getElementById("dark-mode") as HTMLButtonElement;
+ const darkModeButton = document.getElementById("dark-mode") as HTMLButtonElement;
 
 const toggleDarkMode = (): void => {
   document.body.classList.toggle("dark-mode");
@@ -221,7 +221,7 @@ const toggleDarkMode = (): void => {
 };
 
 darkModeButton.addEventListener('click', toggleDarkMode);
- */
+ 
 
 
 // Part 2, Feature 2 : Add a button sort the task, first incomplete task, and later the complete.
